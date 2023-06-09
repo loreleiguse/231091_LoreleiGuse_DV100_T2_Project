@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build A Sub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="../js/subs_of_month.js"></script>
+    <script src="../js/checkout.js"></script>
+    <script src="../js/build_a_sub.js"></script>
+
+</head>
+<body onload="displaySub()">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="../index.html">SuperSubs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="../pages/build_a_sub.html">Build A Sub <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../pages/checkout.html">Checkout</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+
+        <div class="topSubs">
+            <h3>Subs of the Month</h3>
+            <div id="subOut"></div>
+        </div>
+
+        <section>
+            <form id="subForm" onchange="realTimeCost()">
+                <h3>Build A Sub</h3>
+                <input type="text" class="form-control" placeholder="Name Your Sub" id="subName">
+                
+                <div class="prize">
+                    <div class="orderCost" id="realTimeCost"><h3>R0.00</h3></div>
+                </div>
+
+                <div class="bread">
+                    <h3>Bread Options</h3>
+
+                    <div class="bread-check">
+                        <input class="form-check-input" type="radio" name="bread" value="baguette" id="baguette" data-cost="20">
+                        <label class="form-check-label" for="baguette">
+                           Baguette
+                        </label>
+                    </div>
+                    <div class="bread-check">
+                        <input class="form-check-input" type="radio" name="bread" value="italian" id="italian" data-cost="15">
+                        <label class="form-check-label" for="italian">
+                           Italian Bread
+                        </label>
+                    </div>
+                    <div class="bread-check">
+                        <input class="form-check-input" type="radio" name="bread" value="sourdough" id="sourdough" data-cost="10">
+                        <label class="form-check-label" for="sourdough">
+                           Sourdough
+                        </label>
+                    </div>
+                    <div class="bread-check">
+                        <input class="form-check-input" type="radio" name="bread" value="subroll" id="subroll" data-cost="5">
+                        <label class="form-check-label" for="subroll">
+                           Sub Roll
+                        </label>
+                    </div>
+
+                </div>
+      
+                <div class="toppings">
+                    <h3>Topping Options</h3>
+
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="avocados" id="avocados" data-cost="5">
+                        <label class="form-check-label" for="avocados">
+                            Avocados
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="beef" id="beef" data-cost="6">
+                        <label class="form-check-label" for="beef">
+                            Beef
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="cheese" id="cheese" data-cost="7">
+                        <label class="form-check-label" for="cheese">
+                            Cheese
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="chicken" id="chicken" data-cost="8">
+                        <label class="form-check-label" for="chicken">
+                            Chicken
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="chips" id="chips" data-cost="9">
+                        <label class="form-check-label" for="chips">
+                            Chips
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="cucumbers" id="cucumbers" data-cost="10">
+                        <label class="form-check-label" for="cucumbers">
+                            Cucumbers
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="ham" id="ham" data-cost="11">
+                        <label class="form-check-label" for="ham">
+                            Ham
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="herbs" id="herbs" data-cost="12">
+                        <label class="form-check-label" for="herbs">
+                            Herbs
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="jalapenos" id="jalapenos" data-cost="13">
+                        <label class="form-check-label" for="jalapenos">
+                            Jalapenos
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="lamb" id="lamb" data-cost="14">
+                        <label class="form-check-label" for="lamb">
+                            Lamb
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="lettuce" id="lettuce" data-cost="15">
+                        <label class="form-check-label" for="lettuce">
+                            Lettuce
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="mortadella" id="mortadella" data-cost="16">
+                        <label class="form-check-label" for="mortadella">
+                            Mortadella
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="mushrooms" id="mushrooms" data-cost="17">
+                        <label class="form-check-label" for="mushrooms">
+                            Mushrooms
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="olives" id="olives" data-cost="18">
+                        <label class="form-check-label" for="olives">
+                            Olives
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="onions" id="onions" data-cost="19">
+                        <label class="form-check-label" for="onions">
+                            Onions
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="peppers" id="peppers" data-cost="20">
+                        <label class="form-check-label" for="peppers">
+                            Peppers
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="pickles" id="pickles" data-cost="21">
+                        <label class="form-check-label" for="pickles">
+                            Pickles
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="pork" id="pork" data-cost="22">
+                        <label class="form-check-label" for="pork">
+                            Pork
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="salami" id="salami" data-cost="23">
+                        <label class="form-check-label" for="salami">
+                            Salami
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="spinach" id="spinach" data-cost="24">
+                        <label class="form-check-label" for="spinach">
+                            Spinach
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="sprouts" id="sprouts" data-cost="25">
+                        <label class="form-check-label" for="sprouts">
+                            Sprouts
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="steak" id="steak" data-cost="26">
+                        <label class="form-check-label" for="steak">
+                            Steak
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="tomatoes" id="tomatoes" data-cost="27">
+                        <label class="form-check-label" for="tomatoes">
+                            Tomatoes
+                        </label>
+                    </div>
+                    <div class="top-check">
+                        <input class="form-check-input" type="checkbox" name="toppings" value="turkey" id="turkey" data-cost="28">
+                        <label class="form-check-label" for="turkey">
+                            Turkey
+                        </label>
+                    </div>
+                    
+                </div>
+
+                <div class="sauce">
+                    <h3>Sauce Options</h3>
+
+                    <div class="sauce-check">
+                        <input class="form-check-input" type="checkbox" name="sauce" value="ketchup" id="ketchup" data-cost="5">
+                        <label class="form-check-label" for="ketchup">
+                           Ketchup
+                        </label>
+                    </div>
+                    <div class="sauce-check">
+                        <input class="form-check-input" type="checkbox" name="sauce" value="mayo" id="mayo" data-cost="8">
+                        <label class="form-check-label" for="mayo">
+                           Mayo
+                        </label>
+                    </div>
+                    <div class="sauce-check">
+                        <input class="form-check-input" type="checkbox" name="sauce" value="mustard" id="mustard" data-cost="10">
+                        <label class="form-check-label" for="mustard">
+                           Mustard
+                        </label>
+                    </div>
+                    <div class="sauce-check">
+                        <input class="form-check-input" type="checkbox" name="sauce" value="oil" id="oil" data-cost="15">
+                        <label class="form-check-label" for="oil">
+                           Olive Oil
+                        </label>
+                    </div>
+                    <div class="sauce-check">
+                        <input class="form-check-input" type="checkbox" name="sauce" value="piri" id="piri" data-cost="18">
+                        <label class="form-check-label" for="piri">
+                           Piri-Piri
+                        </label>
+                    </div>
+                    <div class="sauce-check">
+                        <input class="form-check-input" type="checkbox" name="sauce" value="chili" id="chili" data-cost="20">
+                        <label class="form-check-label" for="chili">
+                           Sweet Chili
+                        </label>
+                    </div>
+                    <div class="sauce-check">
+                        <input class="form-check-input" type="checkbox" name="sauce" value="vinegar" id="vinegar" data-cost="25">
+                        <label class="form-check-label" for="vinegar">
+                           Vinegar
+                        </label>
+                    </div>
+                    
+                </div>
+                <button class="btn btn-primary" type="button" onclick="makeSub(); displayOrder()">Complete Order</button>
+            </form>
+
+            <div class="output">
+                <div class="outHeader">
+                  <h3>Your Current Order:</h3>
+                  <div class="totalOrder"><h3 id="orderTotal">R0.00</h3></div>
+                </div>
+                <div id="orders">
+          
+                </div>
+                <div class="button-con">
+                  <button class="btn btn-primary" type="button" onclick="checkout()">Proceed to Checkout</button>    
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <footer>
+        <div class="app">SuperSubs</div>
+        <div class="copy">SuperSubs © 2023</div>
+        <div class="social-media">
+            <a href="https://www.youtube.com/"><div class="social-1"></div></a>
+            <a href="https://www.facebook.com/"><div class="social-2"></div></a>
+            <a href="https://www.twitter.com/"><div class="social-3"></div></a>
+            <a href="https://www.instagram.com/"><div class="social-4"></div></a>
+        </div>
+    </footer>
+
+</body>
+</html>
