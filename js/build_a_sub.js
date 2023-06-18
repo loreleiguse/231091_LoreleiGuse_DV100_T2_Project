@@ -1,138 +1,159 @@
-displaySub = () => {
-    let monthSub = document.getElementById("subOut");
+subMonth = () => {
+
+    let subWeek = document.getElementById("subMade");
 
     for(let i = 0; i < subData.length; i++){
+        let name = subData[i].subName;
+        let bread = subData[i].subBread;
+        let fixings = subData[i].subFixings;
+        let sauce = subData[i].subSauce;
 
-            let name = subData[i].subName;
-            let bread = subData[i].subBread;
-            let toppings = subData[i].subToppings;
-            let sauce = subData[i].subSauce;
-            let price = subData[i].subPrice;
-
-            monthSub.innerHTML += `
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">${name}</h5>
-                    <p class="card-text"><strong>Bread:</strong> ${bread}</p>
-                    <p class="card-text"><strong>Toppings:</strong> ${toppings.join(", ")}</p>
-                    <p class="card-text"><strong>Sauce:</strong> ${sauce}</p>
-                    <p class="card-text"><strong>Cost:</strong> R${price}.00</p>
-                </div>
+        subWeek.innerHTML += `
+            <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Name:</strong> ${name}</li>
+                    <li class="list-group-item"><strong>Bread:</strong> ${bread}</li>
+                    <li class="list-group-item"><strong>Fixings:</strong> ${fixings.join(", ")}</li>
+                    <li class="list-group-item"><strong>Sauce:</strong> ${sauce}</li>
+                </ul>
             </div>`
-
     }
 }
 
-
 let subOrder = [];
 
-makeSub = () =>{
+whatSub = () => {
 
-    let subTotal = 0;
+    let totalPrice = 0;
 
-    let subName = document.getElementById("subName").value;
-    
-    let breadOption = document.getElementsByName("bread");
-    let breadValue; 
-    for(let i = 0; i < breadOption.length; i++){
-        if(breadOption[i].checked){
-            breadValue = breadOption[i].value
-            subTotal = subTotal + +breadOption[i].dataset.cost
+    let name = document.getElementById("name").value;
+    let bread = document.getElementsByName("bread");
+    let breadValue;
+
+    for(let i = 0; i < bread.length; i++){
+        if(bread[i].checked){
+            breadValue = bread[i].value
+            totalPrice = totalPrice + +bread[i].dataset.cost
         }
     }
 
-    let toppingOptions = document.getElementsByName("toppings");
-    let topArray = [];
-    for(let i = 0; i < toppingOptions.length; i++){
-        if(toppingOptions[i].checked){
-            topArray.push(toppingOptions[i].value);
-            subTotal = subTotal + +toppingOptions[i].dataset.cost
+    let fixings = document.getElementsByName("fixings");
+    let fixArray = [];
+
+    for(let i = 0; i < fixings.length; i++){
+        if(fixings[i].checked){
+            fixArray.push(fixings[i].value)
+            totalPrice = totalPrice + +fixings[i].dataset.cost
+        }
+    }
+
+    let sauce = document.getElementsByName("sauce");
+    let sauceArray = [];
+
+    for(let i = 0; i < sauce.length; i++){
+        if(sauce[i].checked){
+            sauceArray.push(sauce[i].value)
+            totalPrice = totalPrice + +sauce[i].dataset.cost
+        }
+    }
+
+    let drink = document.getElementsByName("drink");
+    let drinkArray = [];
+
+    for(let i = 0; i < drink.length; i++){
+        if(drink[i].checked){
+            drinkArray.push(drink[i].value)
+            totalPrice = totalPrice + +drink[i].dataset.cost
         }
     }
 
     subOrder.push({
-        subName: subName,
-        subBread: baseValue,
-        subToppings: topArray,
-        subSauce: sauce,
-        subPrice: subTotal
-    });
+        subName: name,
+        subBread: breadValue,
+        subFixings: fixArray,
+        subSauce: sauceArray,
+        subDrink: drinkArray,
+        subPrice: totalPrice
+    })
 
     console.log(subOrder)
 
-    document.getElementById("realTimeCost").innerHTML = "R0.00"
-    document.getElementById("subForm").reset();
+    document.getElementById("currentPrice").innerHTML = "R0.00";
 
+    document.getElementById("subForm").reset ();
 }
 
-realTimeCost = () => {
+currentPrice = () => {
 
-    realTimePrice = 0; 
+    let currentCost = 0;
 
-    let size = document.getElementById("size").value;
-    if(size === "Small"){
-        realTimePrice = realTimePrice + 20;
-    } else if(size === "Medium"){
-        realTimePrice = realTimePrice + 40;
-    } else if(size === "Large"){
-        realTimePrice = realTimePrice + 60;
-    }
-
-    let baseOption = document.getElementsByName("baseRadio"); 
-    for(let i = 0; i < baseOption.length; i++){
-        if(baseOption[i].checked){
-            realTimePrice = realTimePrice + +baseOption[i].dataset.cost
+    let bread = document.getElementsByName("bread");
+    for(let i = 0; i < bread.length; i++){
+        if(bread[i].checked){
+            currentCost = currentCost + +bread[i].dataset.cost
         }
     }
 
-    let toppingOptions = document.getElementsByName("toppings");
-    for(let i = 0; i < toppingOptions.length; i++){
-        if(toppingOptions[i].checked){
-            realTimePrice = realTimePrice + +toppingOptions[i].dataset.cost
+    let fixings = document.getElementsByName("fixings");
+    for(let i = 0; i < fixings.length; i++){
+        if(fixings[i].checked){
+            currentCost = currentCost + +fixings[i].dataset.cost
         }
     }
 
-    document.getElementById("realTimeCost").innerHTML = "R" + realTimePrice + ".00"
+    let sauce = document.getElementsByName("sauce");
+    for(let i = 0; i < sauce.length; i++){
+        if(sauce[i].checked){
+            currentCost = currentCost + +sauce[i].dataset.cost
+        }
+    }
 
+    let drink = document.getElementsByName("drink");
+    for(let i = 0; i < drink.length; i++){
+        if(drink[i].checked){
+            currentCost = currentCost + +drink[i].dataset.cost
+        }
+    }
+
+    document.getElementById("currentPrice").innerHTML = "R" + currentCost + ".00"
 }
 
-displayOrder = () => {
-
-    let area = document.getElementById("orders");
-    let total = document.getElementById("orderTotal");
+showSandwich = () => {
+    let area = document.getElementById("sandwich");
+    let cost = document.getElementById("subTotal");
 
     area.innerHTML = "";
 
-    let overallTotal = 0; 
+    let finalTotal = 0;
 
     for(let i = 0; i < subOrder.length; i++){
+        let name = subOrder[i].subName;
+        let bread = subOrder[i].subBread;
+        let fixings = subOrder[i].subFixings;
+        let sauce = subOrder[i].subSauce;
+        let drink = subOrder[i].subDrink;
+        let price = subOrder[i].subPrice;
 
-        let name = subData[i].subName;
-        let bread = subData[i].subBread;
-        let toppings = subData[i].subToppings;
-        let sauce = subData[i].subSauce;
-        let price = subData[i].subPrice;
+        finalTotal += price;
 
-        overallTotal += price;
+        cost.innerHTML = "R" + finalTotal + ".00";
 
         area.innerHTML += `
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">${name}</h5>
-                    <p class="card-text"><strong>Bread:</strong> ${bread}</p>
-                    <p class="card-text"><strong>Toppings:</strong> ${toppings.join(", ")}</p>
-                    <p class="card-text"><strong>Sauce:</strong> ${sauce}</p>
-                    <p class="card-text"><strong>Cost:</strong> R${price}.00</p>
-                </div>
+            <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Name:</strong> ${name}</li>
+                    <li class="list-group-item"><strong>Bread:</strong> ${bread}</li>
+                    <li class="list-group-item"><strong>Fixings:</strong> ${fixings.join(", ")}</li>
+                    <li class="list-group-item"><strong>Sauce:</strong> ${sauce}</li>
+                    <li class="list-group-item"><strong>Drink:</strong> ${drink}</li>
+                    <li class="list-group-item"><strong>Price:</strong> R${price}.00</li>
+                </ul>
             </div>`
-
-        total.innerHTML = "R" + overallTotal + ".00"
-
     }
 }
 
 checkout = () => {
     let data = JSON.stringify(subOrder)
-    localStorage.setItem("order", data)
-    window.location.href = 'pages/checkout.html'
+    localStorage.setItem("sub", data)
+    window.location.href = '../pages/checkout.html'
 }
