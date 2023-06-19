@@ -18,6 +18,7 @@ showSub = () => {
         subTotal += price;
 
         items.innerHTML += `
+        <br>
             <div class="card" style="width: 18rem;">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><strong>Name:</strong> ${name}</li>
@@ -32,6 +33,8 @@ showSub = () => {
         finalArea.innerHTML = "R" + subTotal + ".00"
     }
 }
+
+addCoupon = () => {}
 
 resetReturn = () => {
     localStorage.removeItem("sub");
